@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+const journalRoutes = require('./routes/journalRoutes');
+app.use('/api/journals', journalRoutes);
+
 app.get('/', (req, res) => {
   res.send('EmoVision API is running...');
 });
