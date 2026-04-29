@@ -13,10 +13,12 @@ app.use(express.json());
 const journalRoutes = require('./routes/journalRoutes');
 const authRoutes = require('./routes/authRoutes');
 const affirmationRoutes = require('./routes/affirmationRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 app.use('/api/journals', journalRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/affirmations', affirmationRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('EmoVision API is running...');
