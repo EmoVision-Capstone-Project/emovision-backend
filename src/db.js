@@ -1,19 +1,18 @@
 const { Pool } = require('pg');
-require('dotenv').config(); 
+require('dotenv').config();
 
 const pool = new Pool({
-  user: process.env.DB_USER, 
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD, 
-  port: process.env.DB_PORT, 
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false 
+  }
 });
 
 pool.connect((err, client, release) => {
   if (err) {
-    return console.error('Gagal terhubung ke database', err.stack);
+    return console.error('Gagal terhubung ke database cloud', err.stack);
   }
-  console.log('Berhasil terhubung ke database emovision_db!');
+  console.log('Berhasil terhubung ke database EmoVision di Supabase!');
   release();
 });
 
