@@ -2,6 +2,62 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db'); 
 
+// Fungsi logika statistik mingguan
+const getWeeklyStats = async (req, res) => {
+  const { user_id } = req.params;
+  const { month, year } = req.query;
+
+  try {
+    const query = `
+      SELECT 
+        CASE 
+          WHEN EXTRACT(DAY FROM created_at) BETWEEN 1 AND 7 THEN 'Week 1'
+          WHEN EXTRACT(DAY FROM created_at) BETWEEN 8 AND 14 THEN 'Week 2'
+          WHEN EXTRACT(DAY FROM created_at) BETWEEN 15 AND 21 THEN 'Week 3'
+          ELSE 'Week 4'
+        END as week_name,
+        LOWER(mood_result) as mood
+      FROM journals
+      WHERE user_id = $1 
+        AND EXTRACT(MONTH FROM created_at) = $2
+        AND EXTRACT(YEAR FROM created_at) = $3
+    `;
+
+    const result = await pool.query(query, [user_id, month, year]);
+
+    const moodToValue = {
+      'happy': 7, 'surprised': 6, 'neutral': 5, 'sad': 4,
+      'fear': 3, 'disgust': 2, 'angry': 1
+    };
+
+    const weeklyScores = { 'Week 1': [], 'Week 2': [], 'Week 3': [], 'Week 4': [] };
+
+    result.rows.forEach(row => {
+      const value = moodToValue[row.mood] || 5;
+      weeklyScores[row.week_name].push(value);
+    });
+
+    const finalChartData = ['Week 1', 'Week 2', 'Week 3', 'Week 4'].map(week => {
+      const scores = weeklyScores[week];
+      const avg = scores.length > 0 
+        ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) 
+        : 5;
+      
+      return { name: week, moodValue: avg };
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: finalChartData
+    });
+
+  } catch (error) {
+    console.error("Gagal menghitung statistik mingguan:", error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+};
+
+router.get('/stats/weekly/:user_id', getWeeklyStats);
 
 router.get('/', async (req, res) => {
   try {
