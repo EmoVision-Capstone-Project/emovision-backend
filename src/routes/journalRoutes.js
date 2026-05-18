@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db'); 
 
-// Fungsi logika statistik mingguan
 const getWeeklyStats = async (req, res) => {
   const { user_id } = req.params;
   const { month, year } = req.query;
