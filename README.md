@@ -1,27 +1,27 @@
 # Emovision Backend
 
-Backend service untuk proyek **Emovision**, menyediakan RESTful API untuk memproses data dan melakukan analisis emosi menggunakan model Machine Learning.
+Backend service untuk proyek **Emovision**, sebuah platform *journaling* yang menyediakan RESTful API untuk mengelola autentikasi pengguna, menyimpan riwayat jurnal, kalkulasi *streak*, serta menyimpan hasil deteksi emosi dari AI.
 
 ## Fitur Utama
 
-*   **Analisis Emosi:** Endpoint untuk menerima input media dan mengembalikan hasil prediksi emosi.
-*   **Otentikasi Pengguna:** Sistem login dan register berbasis JWT (JSON Web Tokens).
-*   **Manajemen Riwayat:** Menyimpan riwayat analisis ke dalam database.
-*   **Dokumentasi API Otomatis:** Dilengkapi dengan Swagger UI / ReDoc.
+* **Manajemen Jurnal & Mood:** Endpoint untuk menyimpan teks jurnal pengguna beserta hasil deteksi emosinya.
+* **Otentikasi Pengguna:** Sistem registrasi dan login aman menggunakan enkripsi *password* (bcrypt).
+* **Kalkulasi Statistik:** Menghitung *streak* harian dan merangkum statistik rata-rata emosi mingguan.
+* **Afirmasi Harian:** Menyimpan dan mengambil data afirmasi positif pengguna.
 
 ## Teknologi yang Digunakan
 
-*   **Bahasa/Framework:** [Python 3.10+ / FastAPI / Node.js / Express]
-*   **Database:** [PostgreSQL / Supabase]
-*   **Machine Learning:** [TensorFlow / PyTorch / OpenCV]
-*   **Deployment:** [Railway]
+* **Runtime/Framework:** Node.js / Express.js
+* **Database:** PostgreSQL (Driver `pg`) & Supabase
+* **Security:** bcrypt (Password Hashing), CORS
+* **Development:** nodemon, dotenv
 
 ## Persyaratan Sistem
 
 Sebelum memulai, pastikan kamu sudah menginstal:
-*   [Python 3.x](https://www.python.org/) atau [Node.js](https://nodejs.org/)
-*   [Git](https://git-scm.com/)
-*   Database server berjalan di lokal atau remote.
+* [Node.js](https://nodejs.org/) (versi 18.x atau lebih baru)
+* [Git](https://git-scm.com/)
+* Database PostgreSQL berjalan di lokal atau koneksi remote (Supabase).
 
 ## Cara Instalasi
 
@@ -82,16 +82,6 @@ Berikut adalah daftar endpoint utama yang tersedia:
 - GET /:id - Mengambil data profil spesifik pengguna berdasarkan ID.
 - PUT /:id - Memperbarui nama lengkap, username, atau password pengguna.
 
-## Kontribusi & Pengembangan Lanjutan
-
-Backend ini dirancang khusus untuk mendukung kebutuhan frontend dan machine learning (deteksi wajah/teks) pada proyek capstone EmoVision. Jika ingin menambahkan skema database atau endpoint baru, silakan buat branch baru dan ajukan Pull Request.
-
-```json
-with open("README.md", "w", encoding="utf-8") as f:
-f.write(readme_content)
-
-print("README.md generated successfully.")
-```
 
 ## Struktur Proyek
 
@@ -112,3 +102,7 @@ emovision-backend/
 ├── package.json          
 └── README.md
 ```
+
+## Kontribusi & Pengembangan Lanjutan
+
+Backend ini dirancang khusus untuk mendukung kebutuhan frontend dan machine learning (deteksi wajah/teks) pada proyek capstone EmoVision. Jika ingin menambahkan skema database atau endpoint baru, silakan buat branch baru dan ajukan Pull Request.
