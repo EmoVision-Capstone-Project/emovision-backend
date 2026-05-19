@@ -12,9 +12,9 @@ Backend service untuk proyek **Emovision**, menyediakan RESTful API untuk mempro
 ## Teknologi yang Digunakan
 
 *   **Bahasa/Framework:** [Python 3.10+ / FastAPI / Node.js / Express]
-*   **Database:** [PostgreSQL / MySQL / MongoDB]
+*   **Database:** [PostgreSQL / Supabase]
 *   **Machine Learning:** [TensorFlow / PyTorch / OpenCV]
-*   **Deployment:** [Docker / AWS / Heroku]
+*   **Deployment:** [Railway]
 
 ## Persyaratan Sistem
 
