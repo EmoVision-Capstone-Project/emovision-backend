@@ -1,6 +1,6 @@
 # Emovision Backend
 
-Backend service untuk proyek **Emovision**, menyediakan RESTful API untuk memproses data [gambar/video/suara] dan melakukan analisis emosi menggunakan model Machine Learning.
+Backend service untuk proyek **Emovision**, menyediakan RESTful API untuk memproses data dan melakukan analisis emosi menggunakan model Machine Learning.
 
 ## Fitur Utama
 
